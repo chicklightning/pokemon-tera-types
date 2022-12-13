@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'nerds-and-dragons'`, () => {
+  it(`should have as title 'pokemon-tera-type'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('nerds-and-dragons');
+    expect(app.title).toEqual('pokemon-tera-type');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('nerds-and-dragons app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('pokemon-tera-type app is running!');
   });
 });

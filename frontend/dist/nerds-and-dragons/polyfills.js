@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Gabbo\source\repos\nerds-and-dragons\frontend\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! C:\Users\Gabbo\source\repos\pokemon-tera-type\frontend\src\polyfills.ts */"hN/g");
 
 
 /***/ }),
