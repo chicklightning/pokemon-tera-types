@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title = 'Nerds & Dragons';
+  title = 'Pokémon Tera Type Finder';
   route: string;
 
   constructor(location: Location, router: Router) {
