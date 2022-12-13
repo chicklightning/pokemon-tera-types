@@ -1,0 +1,22 @@
+{
+  "name": "pokemon-tera-types",
+  "version": "1.0.0",
+  "description": "Tells you what type of Pokémon to bring to tera raids.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd backend && npm install",
+    "start": "cd backend && node index.js",
+    "test": "echo \"This isn't really a test.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chicklightning/pokemon-tera-types.git"
+  },
+  "keywords": [],
+  "author": "Gabrielle Sweet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chicklightning/pokemon-tera-types/issues"
+  },
+  "homepage": "https://github.com/chicklightning/pokemon-tera-types#readme"
+}

@@ -1,0 +1,21 @@
+h1 {
+    color:ivory;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+}
+
+.navbar-nav .nav-item {
+   border-left: 1px solid silver;
+   padding-left: 1%;
+   padding-right: 1%;
+}
+
+@media (max-width: 576px) {
+    .navbar-nav .nav-item {
+        border-left: 0px;
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+}
