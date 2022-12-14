@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { PokemonType } from '../services/pokemontype';
 import { PokemonTypeService } from '../services/pokemontype.service';
@@ -12,6 +12,7 @@ import { MessageService } from '../services/message.service';
 export class TeraTypeComponent {
   teraTypes: PokemonType[];
   selectedType: PokemonType;
+  @Output() onSelected = new EventEmitter<PokemonType>();
 
   constructor(private pokemonTypeService: PokemonTypeService, private messageService: MessageService) { }
 
@@ -21,6 +22,7 @@ export class TeraTypeComponent {
   }
 
   onSelect(selectedType: PokemonType): void {
+    this.onSelected.emit(selectedType);
     this.selectedType = selectedType;
   }
 
