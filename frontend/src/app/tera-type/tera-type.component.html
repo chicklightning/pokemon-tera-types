@@ -1,8 +1,8 @@
 <div class="container text-center">
     <h3 class="display-4 dongle-bold">Select the Tera type:</h3>
-    <div class="row">
-        <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12" *ngFor="let teraType of teraTypes" >
-            <img class="glow-on-hover" src='../../assets/types/{{teraType.id}}.png' alt='{{teraType.id}}' (click)="onSelect(teraType)">
+    <div class="row gy-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let teraType of teraTypes" >
+            <button class="glow-on-hover"><img src='../../assets/types/{{teraType.id}}.png' alt='{{teraType.id}}' (click)="onSelect(teraType)"></button>
         </div>
     </div>
 </div>
