@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "cd backend && npm install",
-    "build-start": "cd ..\\frontend && ng build && cd ..\\..\\backend && node index.js",
+    "build-start": "cd frontend && ng build && cd ..\\backend && node index.js",
     "start": "cd backend && node index.js",
     "test": "echo \"This isn't really a test.\""
   },
@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "author": "Gabrielle Sweet",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/chicklightning/pokemon-tera-types/issues"
   },

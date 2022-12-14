@@ -16,7 +16,7 @@
     "url": "git+https://github.com/chicklightning/pokemon-tera-types.git"
   },
   "author": "Gabrielle Sweet",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/chicklightning/pokemon-tera-types/issues"
   },
