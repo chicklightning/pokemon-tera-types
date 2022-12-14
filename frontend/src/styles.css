@@ -11,10 +11,16 @@
     font-family: 'Amiri', serif;
 }
 
-.playfair-display
+.dongle-light
 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
+    font-family: 'Dongle', serif;
+    font-weight: 300;
+}
+
+.dongle-bold
+{
+    font-family: 'Dongle', serif;
+    font-weight: 700;
 }
 
 .input-group {
