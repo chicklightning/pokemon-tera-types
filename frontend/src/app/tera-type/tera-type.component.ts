@@ -17,6 +17,7 @@ export class TeraTypeComponent {
 
   ngOnInit(): void {
     this.getPokemonTypes();
+    this.selectedType = null;
   }
 
   onSelect(selectedType: PokemonType): void {
