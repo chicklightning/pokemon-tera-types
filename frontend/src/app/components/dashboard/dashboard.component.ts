@@ -8,6 +8,7 @@ import { PokemonType } from 'src/app/services/pokemontype';
 })
 export class DashboardComponent implements OnInit {
   selectedTeraType: PokemonType;
+  selectedRaidPokemon: Pokemon;
 
   constructor() { }
 
@@ -16,5 +17,9 @@ export class DashboardComponent implements OnInit {
 
   onSelectedTeraType(selectedType: PokemonType): void {
     this.selectedTeraType = selectedType;
+  }
+
+  onSelectedRaidPokemon(selectedPokemon: Pokemon): void {
+    this.selectedRaidPokemon = selectedPokemon;
   }
 }

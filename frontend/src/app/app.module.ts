@@ -10,6 +10,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TeraTypeComponent } from './tera-type/tera-type.component';
+import { RaidPokemonComponent } from './raid-pokemon/raid-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TeraTypeComponent } from './tera-type/tera-type.component';
     MessagesComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    TeraTypeComponent
+    TeraTypeComponent,
+    RaidPokemonComponent
   ],
   imports: [
     BrowserModule,
