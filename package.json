@@ -1,10 +1,11 @@
 {
   "name": "pokemon-tera-types",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Tells you what type of Pokémon to bring to tera raids.",
   "main": "index.js",
   "scripts": {
     "postinstall": "cd backend && npm install",
+    "build-start": "cd ..\\frontend && ng build && cd ..\\..\\backend && node index.js",
     "start": "cd backend && node index.js",
     "test": "echo \"This isn't really a test.\""
   },
