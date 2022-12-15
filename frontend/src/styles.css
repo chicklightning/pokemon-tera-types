@@ -30,7 +30,11 @@
 }
 
 body {
-  font-size: 100%;
+    font-size: 100%;
+}
+
+#grad {
+    background-image: linear-gradient(to bottom right, blue, #cf68c4);
 }
 
 .glow-on-hover {

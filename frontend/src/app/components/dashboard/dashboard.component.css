@@ -1,5 +1,5 @@
 .jumbotron {
-  background-image: url("../../../assets/pexels-mudassir-ali-3970396.jpg");
+  background-image: linear-gradient(to bottom right, rgb(0, 0, 0),rgb(49, 49, 49));
   background-size: cover;
   color: white;
 }
