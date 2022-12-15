@@ -35,11 +35,13 @@ export class SuggestPokemonComponent {
             if (this.raidPokemon) {
               this.determineRaidPokemonStrengthsAndWeaknesses(change.currentValue, this.raidPokemon);
             }
+            break;
           }
           case 'raidPokemon': {
             if (this.teraType) {
               this.determineRaidPokemonStrengthsAndWeaknesses(this.teraType, change.currentValue);
             }
+            break;
           }
         }
       }
@@ -52,21 +54,21 @@ export class SuggestPokemonComponent {
     this.suggestedMoveTypes = new Map<string, number>();
 
     // Get all of the base Pokemon's types as actual PokemonTypes
-    let raidPokemonTypes: PokemonType[];
-    for (let typeName of raidPokemon.types) {
+    let raidPokemonTypes: PokemonType[] = [];
+    raidPokemon.types.forEach((typeName) => {
       const pokemonType = this.pokemonTypeService.getPokemonType(typeName);
       raidPokemonTypes.push(pokemonType);
-    }
+    });
     
     // We want to see what types the raid Pokemon's attacks are less effective against so we can
     //    recommend those types for the battle Pokemon
-    for (let type of raidPokemonTypes) {
+    raidPokemonTypes.forEach((type) => {
       for (let [typeName, multiplier] of type.attackWeaknesses) {
         // If there's a type that is immune to damage, increase its multiplier for higher recommendation
         let modifiedImmunityMultiplier = (multiplier === 0) ? 1 : multiplier;
         this.suggestedTypes.set(typeName, modifiedImmunityMultiplier);
       }
-    }
+    });
 
     // Now, we want to see which types the Tera type's attack is less effective against so we can also recommend
     //    those types of Pokemon, and prioritize listing types and Pokemon that have a type in both this list and
