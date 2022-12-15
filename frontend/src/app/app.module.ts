@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './components/app-component/app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -20,13 +22,14 @@ import { RaidPokemonComponent } from './raid-pokemon/raid-pokemon.component';
     DashboardComponent,
     PageNotFoundComponent,
     TeraTypeComponent,
-    RaidPokemonComponent
+    RaidPokemonComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

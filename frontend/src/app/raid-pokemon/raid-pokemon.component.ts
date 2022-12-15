@@ -11,6 +11,7 @@ import { PokemonService } from '../services/pokemon.service';
 export class RaidPokemonComponent {
   allPokemon: Pokemon[];
   selectedPokemon: Pokemon;
+  searchText;
   @Output() onSelected = new EventEmitter<Pokemon>();
 
   constructor(private pokemonService: PokemonService, private messageService: MessageService) { }
