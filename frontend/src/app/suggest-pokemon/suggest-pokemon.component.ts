@@ -17,6 +17,7 @@ export class SuggestPokemonComponent {
   suggestedTypes: any;
   suggestedPokemon: any;
   suggestedMoveTypes: any;
+  searchText;
 
   constructor(private pokemonService: PokemonService, private pokemonTypeService: PokemonTypeService, private messageService: MessageService) { }
 
@@ -123,6 +124,24 @@ export class SuggestPokemonComponent {
         this.suggestedMoveTypes = [...tempSuggestedMoveTypes.entries()].sort((a, b) => b[1] - a[1]);
         this.suggestedTypes = [...tempSuggestedTypes.entries()].sort((a, b) => b[1] - a[1]);
       }
+    }
+  }
+
+  determineDropShadowColor(multiplier: number): string {
+    if (multiplier >= 12) {
+      return 'rgba(255, 0, 0, .5)';
+    } else if (multiplier < 12 && multiplier >= 11) {
+      return 'rgba(255, 119, 0, .5)';
+    } else if (multiplier < 11 && multiplier >= 10) {
+      return 'rgba(255, 166, 0, .5)';
+    } else if (multiplier < 10 && multiplier >= 9) {
+      return 'rgba(255, 230, 0, .5)';
+    } else if (multiplier < 9 && multiplier >= 8) {
+      return 'rgba(232, 255, 0, .5)';
+    } else if (multiplier < 8 && multiplier >= 7) {
+      return 'rgba(174, 255, 0, .5)';
+    } else {
+      return 'rgba(0, 255, 76, .5)';
     }
   }
 }

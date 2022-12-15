@@ -1,11 +1,40 @@
 <div class="container">
     <h3 class="display-4 dongle-bold text-center">Here's what we think...</h3>
-    <div class="row text-center">
-        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" style="margin-top:0.5em !important;" *ngFor="let pokemon of suggestedPokemon">
-            <img src='../../assets/pokemon/{{pokemon[0]}}.png' width="50px" alt='{{pokemon[0]}}'>
-            {{pokemon[0]}}
+    <div *ngIf="suggestedPokemon" class="text-center">
+        <h1 class="dongle-bold">Best Pokémon types:</h1>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="margin-top:0.5em !important;" *ngFor="let suggestedType of suggestedTypes">
+                <button ng-style="{ 'box-shadow': '0px 5px 15px ' + determineDropShadowColor(suggestedType[1])}">
+                    <img src='../../assets/types/{{suggestedType[0]}}.png' alt='{{suggestedType[0]}}'>
+                </button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <h1 class="dongle-bold">Best move types:</h1>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="margin-top:0.5em !important;" *ngFor="let moveType of suggestedMoveTypes"s>
+                <button ng-style="{ 'box-shadow': '0px 5px 15px ' + determineDropShadowColor(moveType[1])}">
+                    <img src='../../assets/types/{{moveType[0]}}.png' alt='{{moveType[0]}}'>
+                </button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <form>
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search for a Pokémon">
+        </form>
+        <br>
+        <div class="row">
+            <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" *ngFor="let pokemon of suggestedPokemon | filter:searchText">
+                <button ng-style="{ 'box-shadow': '0px 5px 15px ' + determineDropShadowColor(suggestedPokemon[1])}">
+                    <img src='../../assets/pokemon/{{pokemon[0]}}.png' width="50px" alt='{{pokemon[0]}}'>
+                    {{pokemon[0]}}
+                </button>
+            </div>
         </div>
     </div>
+    <br>
     <br>
     <br>
     <div class="lead">
@@ -15,7 +44,7 @@
                 If the Pokémon takes reduced damage or is immune to damage from one of the base or Tera types of the raid Pokémon
             </li>
             <li>
-                If the raid Pokémon's tera type overlaps with its base types (for increased Same Type Attack Bonus, or STAB)
+                If the raid Pokémon's Tera type overlaps with its base types (for increased Same Type Attack Bonus, or STAB)
             </li>
             <li>
                 If the Pokémon has a type where it could benefit from STAB and the move would be super effective against the raid Pokémon
