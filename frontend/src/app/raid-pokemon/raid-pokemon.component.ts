@@ -9,23 +9,23 @@ import { PokemonService } from '../services/pokemon.service';
   styleUrls: ['./raid-pokemon.component.css']
 })
 export class RaidPokemonComponent {
-  pokemon: Pokemon[];
-  selectedRaidPokemon: Pokemon;
+  allPokemon: Pokemon[];
+  selectedPokemon: Pokemon;
   @Output() onSelected = new EventEmitter<Pokemon>();
 
   constructor(private pokemonService: PokemonService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getAllPokemon();
-    this.selectedRaidPokemon = null;
+    this.selectedPokemon = null;
   }
 
   onSelect(selectedPokemon: Pokemon): void {
     this.onSelected.emit(selectedPokemon);
-    this.selectedRaidPokemon = selectedPokemon;
+    this.selectedPokemon = selectedPokemon;
   }
 
   getAllPokemon(): void {
-    this.pokemon = this.pokemonService.getAllPokemon();
+    this.allPokemon = this.pokemonService.getAllPokemon();
   }
 }

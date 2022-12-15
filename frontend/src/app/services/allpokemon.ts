@@ -206,7 +206,7 @@ export const POKEMON: Pokemon[] = [
         types: ["Water"],
     },
     {
-        id: "FLoatzel",
+        id: "Floatzel",
         types: ["Water"],
     },
     {
@@ -750,7 +750,7 @@ export const POKEMON: Pokemon[] = [
         types: ["Normal"],
     },
     {
-        id: "Dudunspace",
+        id: "Dudunsparce",
         types: ["Normal"],
     },
     {

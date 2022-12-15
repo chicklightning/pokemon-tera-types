@@ -1,1 +1,10 @@
-<p>raid-pokemon works!</p>
+<div class="container text-center">
+    <h3 class="display-4 dongle-bold">Select the raid Pokémon:</h3>
+    <div class="row">
+        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" style="margin-top:0.5em !important;" *ngFor="let pokemon of allPokemon" [ngStyle]="{'opacity' : (selectedPokemon != null && pokemon.id != selectedPokemon.id) ? 0.4 : 1}">
+            <button class="glow-on-hover" (click)="onSelect(pokemon)" >
+                <img src='../../assets/pokemon/{{pokemon.id}}.png' width="50px" alt='{{pokemon.id}}'>
+            </button>
+        </div>
+    </div>
+</div>

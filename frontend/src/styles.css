@@ -34,8 +34,6 @@ body {
 }
 
 .glow-on-hover {
-    width: 144px;
-    height: 32px;
     border: none;
     outline: none;
     color: #fff;

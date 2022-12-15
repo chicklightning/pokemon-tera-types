@@ -1,3 +1,8 @@
 button {
     padding: 0px 0px !important;
 }
+
+.glow-on-hover {
+    width: 144px;
+    height: 32px;
+}
