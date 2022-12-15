@@ -1,0 +1,30 @@
+<div class="container text-center">
+    <h3 class="display-4 dongle-bold">Here's what we think...</h3>
+    <div class="row">
+        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" style="margin-top:0.5em !important;" *ngFor="let pokemon of suggestedPokemon | keyvalue">
+            <button>
+                <img src='../../assets/pokemon/{{pokemon.key}}.png' width="50px" alt='{{pokemon.key}}'>
+                {{pokemon.key}}
+            </button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="lead">
+        We choose and rank Pokémon based on the following criteria:
+        <ul>
+            <li>
+                If the Pokémon takes reduced damage or is immune to damage from one of the base or Tera types of the raid Pokémon
+            </li>
+            <li>
+                If the raid Pokémon's tera type overlaps with its base types (for increased Same Type Attack Bonus, or STAB)
+            </li>
+            <li>
+                If the Pokémon has a type where it could benefit from STAB and the move would be super effective against the raid Pokémon
+            </li>
+            <li>
+                The Pokémon does not have a type that is weak to the raid Pokémon
+            </li>
+        </ul>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TeraTypeComponent } from './tera-type/tera-type.component';
 import { RaidPokemonComponent } from './raid-pokemon/raid-pokemon.component';
+import { SuggestPokemonComponent } from './suggest-pokemon/suggest-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RaidPokemonComponent } from './raid-pokemon/raid-pokemon.component';
     PageNotFoundComponent,
     TeraTypeComponent,
     RaidPokemonComponent,
+    SuggestPokemonComponent,
   ],
   imports: [
     BrowserModule,

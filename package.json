@@ -7,6 +7,7 @@
     "postinstall": "cd backend && npm install",
     "build-start": "cd frontend && ng build && cd ..\\backend && node index.js",
     "start": "cd backend && node index.js",
+    "serve": "cd frontend && npm run start",
     "test": "echo \"This isn't really a test.\""
   },
   "repository": {

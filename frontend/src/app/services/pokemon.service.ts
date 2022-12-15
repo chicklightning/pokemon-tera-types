@@ -17,4 +17,10 @@ export class PokemonService {
   getPokemon(id: string): Pokemon {
     return POKEMON.find(pokemon => pokemon.id === id);
   }
+
+  getPokemonByType(type: string) : Pokemon[] {
+    return POKEMON.filter(
+      (pokemon) => pokemon.types.includes(type)
+    );
+  }
 }
