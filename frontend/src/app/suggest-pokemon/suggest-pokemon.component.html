@@ -1,11 +1,9 @@
-<div class="container text-center">
-    <h3 class="display-4 dongle-bold">Here's what we think...</h3>
-    <div class="row">
-        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" style="margin-top:0.5em !important;" *ngFor="let pokemon of suggestedPokemon | keyvalue">
-            <button>
-                <img src='../../assets/pokemon/{{pokemon.key}}.png' width="50px" alt='{{pokemon.key}}'>
-                {{pokemon.key}}
-            </button>
+<div class="container">
+    <h3 class="display-4 dongle-bold text-center">Here's what we think...</h3>
+    <div class="row text-center">
+        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" style="margin-top:0.5em !important;" *ngFor="let pokemon of suggestedPokemon">
+            <img src='../../assets/pokemon/{{pokemon[0]}}.png' width="50px" alt='{{pokemon[0]}}'>
+            {{pokemon[0]}}
         </div>
     </div>
     <br>

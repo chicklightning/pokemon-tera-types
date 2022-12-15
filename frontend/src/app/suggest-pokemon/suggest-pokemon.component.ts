@@ -14,16 +14,13 @@ export class SuggestPokemonComponent {
   @Input() teraType: PokemonType;
   @Input() raidPokemon: Pokemon;
 
-  suggestedTypes: Map<string, number>;
-  suggestedPokemon: Map<string, number>;
-  suggestedMoveTypes: Map<string, number>
+  suggestedTypes: any;
+  suggestedPokemon: any;
+  suggestedMoveTypes: any;
 
   constructor(private pokemonService: PokemonService, private pokemonTypeService: PokemonTypeService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.suggestedTypes = new Map<string, number>();
-    this.suggestedPokemon = new Map<string, number>();
-    this.suggestedMoveTypes = new Map<string, number>();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,9 +46,9 @@ export class SuggestPokemonComponent {
   }
   
   determineRaidPokemonStrengthsAndWeaknesses(teraType: PokemonType, raidPokemon: Pokemon): void {
-    this.suggestedTypes = new Map<string, number>();
-    this.suggestedPokemon = new Map<string, number>();
-    this.suggestedMoveTypes = new Map<string, number>();
+    const tempSuggestedTypes = new Map<string, number>();
+    const tempSuggestedPokemon = new Map<string, number>();
+    const tempSuggestedMoveTypes = new Map<string, number>();
 
     // Get all of the base Pokemon's types as actual PokemonTypes
     let raidPokemonTypes: PokemonType[] = [];
@@ -66,7 +63,7 @@ export class SuggestPokemonComponent {
       for (let [typeName, multiplier] of type.attackWeaknesses) {
         // If there's a type that is immune to damage, increase its multiplier for higher recommendation
         let modifiedImmunityMultiplier = (multiplier === 0) ? 1 : multiplier;
-        this.suggestedTypes.set(typeName, modifiedImmunityMultiplier);
+        tempSuggestedTypes.set(typeName, modifiedImmunityMultiplier);
       }
     });
 
@@ -76,31 +73,35 @@ export class SuggestPokemonComponent {
     for (let [typeName, multiplier] of teraType.attackWeaknesses) {
       // If there's a type that is immune to damage, increase its multiplier for higher recommendation since it negates STAB
       let modifiedImmunityMultiplier = (multiplier === 0) ? 1 : multiplier;
-      if (!this.suggestedTypes.has(typeName)) {
-        this.suggestedTypes.set(typeName, modifiedImmunityMultiplier);
+      if (!tempSuggestedTypes.has(typeName)) {
+        tempSuggestedTypes.set(typeName, modifiedImmunityMultiplier);
       } else {
-        this.suggestedTypes[typeName] += modifiedImmunityMultiplier;
+        let newTypeMultipler = tempSuggestedTypes.get(typeName) + multiplier;
+        tempSuggestedTypes.set(typeName, newTypeMultipler);
       }
     }
 
     // Now we want to see what types are super effective AGAINST the tera type; but if the type is also super weak to the tera
     //    type, we don't want to recommend it
     for (let [typeName, multiplier] of teraType.defenseWeaknesses) {
-      this.suggestedMoveTypes.set(typeName, multiplier);
+      tempSuggestedMoveTypes.set(typeName, multiplier);
 
       if (!teraType.attackStrengths.has(typeName)) {
-        if (!this.suggestedTypes.has(typeName)) {
-          this.suggestedTypes.set(typeName, multiplier);
+        if (!tempSuggestedTypes.has(typeName)) {
+          tempSuggestedTypes.set(typeName, multiplier);
         } else {
           // That means this type is also resistant to attacks from the raid Pokemon, so prioritize recommendation for STAB
-          this.suggestedMoveTypes[typeName] += multiplier;
-          this.suggestedTypes[typeName] += multiplier;
+          let newMoveMultipler = tempSuggestedMoveTypes.get(typeName) + multiplier;
+          tempSuggestedMoveTypes.set(typeName, newMoveMultipler);
+         
+          let newTypeMultipler = tempSuggestedTypes.get(typeName) + multiplier;
+          tempSuggestedTypes.set(typeName, newTypeMultipler);
         }
       }
     }
 
     // Now let's fetch Pokemon with these types that also do not have types that are defensively weak to the raid Pokemon:
-    for (let [typeName, multiplier] of this.suggestedTypes) {
+    for (let [typeName, multiplier] of tempSuggestedTypes) {
       const allPokemonOfType = this.pokemonService.getPokemonByType(typeName);
       for (let pokemon of allPokemonOfType) {
         for (let type of pokemon.types) {
@@ -108,14 +109,19 @@ export class SuggestPokemonComponent {
             continue;
           }
 
-          if (!this.suggestedPokemon.has(pokemon.id)) {
-            this.suggestedPokemon.set(pokemon.id, multiplier);
+          if (!tempSuggestedPokemon.has(pokemon.id)) {
+            tempSuggestedPokemon.set(pokemon.id, multiplier);
           } else {
             // If this Pokemon is already in the list, that means it has another type that the raid Pokemon is weak to, so increase
             //    recommendation priority
-            this.suggestedPokemon[pokemon.id] += multiplier;
+            let newMultipler = tempSuggestedPokemon.get(pokemon.id) + multiplier;
+            tempSuggestedPokemon.set(pokemon.id, newMultipler);
           }
         }
+
+        this.suggestedPokemon = [...tempSuggestedPokemon.entries()].sort((a, b) => b[1] - a[1]);
+        this.suggestedMoveTypes = [...tempSuggestedMoveTypes.entries()].sort((a, b) => b[1] - a[1]);
+        this.suggestedTypes = [...tempSuggestedTypes.entries()].sort((a, b) => b[1] - a[1]);
       }
     }
   }
