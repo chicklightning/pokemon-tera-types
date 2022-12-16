@@ -3,32 +3,29 @@
     <div *ngIf="suggestedPokemon" class="text-center">
         <h1 class="dongle-bold">Best Pokémon types:</h1>
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="margin-top:0.5em !important;" *ngFor="let suggestedType of suggestedTypes">
-                <button ng-style="{ 'box-shadow': '0px 5px 15px ' + determineDropShadowColor(suggestedType[1])}">
-                    <img src='../../assets/types/{{suggestedType[0]}}.png' alt='{{suggestedType[0]}}'>
-                </button>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let suggestedType of suggestedTypes">
+                <img src='../../assets/types/{{suggestedType[0]}}.png' alt='{{suggestedType[0]}}, {{suggestedType[1]}}' [style.box-shadow]="determineTypeDropShadow(suggestedType[1])">
             </div>
         </div>
         <br>
         <br>
         <h1 class="dongle-bold">Best move types:</h1>
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="margin-top:0.5em !important;" *ngFor="let moveType of suggestedMoveTypes"s>
-                <button ng-style="{ 'box-shadow': '0px 5px 15px ' + determineDropShadowColor(moveType[1])}">
-                    <img src='../../assets/types/{{moveType[0]}}.png' alt='{{moveType[0]}}'>
-                </button>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let moveType of suggestedMoveTypes"s>
+                <img src='../../assets/types/{{moveType[0]}}.png' alt='{{moveType[0]}}, {{moveType[1]}}' [style.box-shadow]="determineTypeDropShadow(moveType[1])">
             </div>
         </div>
         <br>
         <br>
+        <h1 class="dongle-bold">Suggested Pokémon:</h1>
         <form>
             <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search for a Pokémon">
         </form>
         <br>
         <div class="row">
             <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" *ngFor="let pokemon of suggestedPokemon | filter:searchText">
-                <button ng-style="{ 'box-shadow': '0px 5px 15px ' + determineDropShadowColor(suggestedPokemon[1])}">
-                    <img src='../../assets/pokemon/{{pokemon[0]}}.png' width="50px" alt='{{pokemon[0]}}'>
+                <button [style.box-shadow]="determinePokemonDropShadow(pokemon[1])">
+                    <img src='../../assets/pokemon/{{pokemon[0]}}.png' width="50px" alt='{{pokemon[0]}}, {{pokemon[1]}}'>
                     {{pokemon[0]}}
                 </button>
             </div>
@@ -53,5 +50,7 @@
                 The Pokémon does not have a type that is weak to the raid Pokémon
             </li>
         </ul>
+        <br>
+        Pokémon and types are ranked from most (red glow) to least (green glow) recommended.
     </div>
 </div>

@@ -127,21 +127,33 @@ export class SuggestPokemonComponent {
     }
   }
 
-  determineDropShadowColor(multiplier: number): string {
-    if (multiplier >= 12) {
-      return 'rgba(255, 0, 0, .5)';
-    } else if (multiplier < 12 && multiplier >= 11) {
-      return 'rgba(255, 119, 0, .5)';
-    } else if (multiplier < 11 && multiplier >= 10) {
-      return 'rgba(255, 166, 0, .5)';
-    } else if (multiplier < 10 && multiplier >= 9) {
-      return 'rgba(255, 230, 0, .5)';
-    } else if (multiplier < 9 && multiplier >= 8) {
-      return 'rgba(232, 255, 0, .5)';
-    } else if (multiplier < 8 && multiplier >= 7) {
-      return 'rgba(174, 255, 0, .5)';
+  determineTypeDropShadow(multiplier: number) {
+    if (multiplier >= 4) {
+      return '0 0 5px 5px rgba(255, 0, 0, .8)';
+    } else if (multiplier < 4 && multiplier >= 3) {
+      return '0 0 5px 5px rgba(255, 119, 0, .8)';
+    } else if (multiplier < 3 && multiplier >= 2) {
+      return '0 0 5px 5px rgba(255, 166, 0, .8)';
     } else {
-      return 'rgba(0, 255, 76, .5)';
+      return '0 0 5px 5px rgba(255, 230, 0, .8)';
+    }
+  }
+
+  determinePokemonDropShadow(multiplier: number) {
+    if (multiplier >= 12) {
+      return '0px 2px 5px rgba(255, 0, 0, .8)';
+    } else if (multiplier < 12 && multiplier >= 11) {
+      return '0px 2px 5px rgba(255, 119, 0, .8)';
+    } else if (multiplier < 11 && multiplier >= 10) {
+      return '0px 2px 5px rgba(255, 166, 0, .8)';
+    } else if (multiplier < 10 && multiplier >= 9) {
+      return '0px 2px 5px rgba(255, 230, 0, .8)';
+    } else if (multiplier < 9 && multiplier >= 8) {
+      return '0px 2px 5px rgba(232, 255, 0, .8)';
+    } else if (multiplier < 8 && multiplier >= 7) {
+      return '0px 2px 5px rgba(174, 255, 0, .8)';
+    } else {
+      return '0px 2px 5px rgba(0, 255, 76, .8)';
     }
   }
 }
