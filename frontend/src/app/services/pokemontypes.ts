@@ -426,7 +426,7 @@ export const POKEMONTYPES: PokemonType[] = [
             ["Dragon", 0.5],
         ]),
         defenseStrengths: new Map<string, number>([
-            ["Stel", 0.5],
+            ["Steel", 0.5],
             ["Fire", 0.5],
             ["Water", 0.5],
             ["Ice", 0.5],
