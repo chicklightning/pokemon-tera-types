@@ -22,7 +22,7 @@
             <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search for a Pokémon">
         </form>
         <br>
-        <div class="row">
+        <div class="row pokemon-list">
             <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3" *ngFor="let pokemon of suggestedPokemon | filter:searchText">
                 <button [style.box-shadow]="determinePokemonDropShadow(pokemon[1])">
                     <img src='../../assets/pokemon/{{pokemon[0]}}.png' width="50px" alt='{{pokemon[0]}}, {{pokemon[1]}}'>

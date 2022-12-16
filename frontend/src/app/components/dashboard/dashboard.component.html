@@ -10,13 +10,13 @@
         <br>
         <br>
     </div>
-    <app-tera-type (onSelected)="onSelectedTeraType($event)"></app-tera-type>
+    <app-tera-type id="tera" (onSelected)="onSelectedTeraType($event)"></app-tera-type>
     <br>
     <br>
     <br>
-    <app-raid-pokemon (onSelected)="onSelectedRaidPokemon($event)"></app-raid-pokemon>
+    <app-raid-pokemon id="raid" (onSelected)="onSelectedRaidPokemon($event)"></app-raid-pokemon>
     <br>
     <br>
     <br>
-    <app-suggest-pokemon [teraType]="selectedTeraType" [raidPokemon]="selectedRaidPokemon"></app-suggest-pokemon>
+    <app-suggest-pokemon id="suggestions" [teraType]="selectedTeraType" [raidPokemon]="selectedRaidPokemon"></app-suggest-pokemon>
 </div>

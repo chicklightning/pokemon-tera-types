@@ -33,8 +33,9 @@ body {
     font-size: 100%;
 }
 
-#grad {
-    background-image: linear-gradient(to bottom right, blue, #cf68c4);
+.pokemon-list {
+    overflow: auto;
+    max-height: 20em;
 }
 
 .glow-on-hover {
