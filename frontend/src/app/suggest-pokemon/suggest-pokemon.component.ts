@@ -130,11 +130,6 @@ export class SuggestPokemonComponent {
     let baseAttackStrengthTypes = new Set(raidPokemonType.attackStrengths.keys());
     let disallowedPokemonTypes = new Set([...teraAttackStrengthTypes, ...baseAttackStrengthTypes]);
 
-    // Let's get a list of move types we don't want because the raid Pokemon will be resistant to them:
-    let teraDefenseStrengthTypes = new Set(teraType.defenseStrengths.keys());
-    let baseDefenseStrengthTypes = new Set(raidPokemonType.defenseStrengths.keys());
-    let disallowedMoveTypes = new Set([...teraDefenseStrengthTypes, ...baseDefenseStrengthTypes]);
-
     // Let's get a list of Pokemon types we DO want - we want Pokemon types that appear in the attack weaknesses
     //    of the raid pokemon (more resistant to attacks of its Tera type and its base types); if it appears as a weakness
     //    of both the Tera type AND base type, then increase the priority; if it appears as an attack/defense weakness of the base type
@@ -173,15 +168,12 @@ export class SuggestPokemonComponent {
         }
       }
 
-      if (!disallowedMoveTypes.has(typeName)) {
-        // If the tera type also takes increased damage from type, add it to the total multiplier:
-        let modifiedSTABMultiplier = (teraType.defenseWeaknesses.has(typeName)) ? multiplier + 2 : multiplier;
-        if (!tempSuggestedMoveTypes.has(typeName)) {
-          tempSuggestedMoveTypes.set(typeName, modifiedSTABMultiplier);
-        } else {
-          let newTypeMultipler = tempSuggestedMoveTypes.get(typeName) + modifiedSTABMultiplier;
-          tempSuggestedMoveTypes.set(typeName, newTypeMultipler);
-        }
+      // Add all of the Tera type's weaknesses as suggested move types:
+      if (!tempSuggestedMoveTypes.has(typeName)) {
+        tempSuggestedMoveTypes.set(typeName, multiplier);
+      } else {
+        let newTypeMultipler = tempSuggestedMoveTypes.get(typeName) + multiplier;
+        tempSuggestedMoveTypes.set(typeName, newTypeMultipler);
       }
     }
 
