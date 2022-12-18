@@ -11,9 +11,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { TeraTypeComponent } from './tera-type/tera-type.component';
-import { RaidPokemonComponent } from './raid-pokemon/raid-pokemon.component';
-import { SuggestPokemonComponent } from './suggest-pokemon/suggest-pokemon.component';
+import { TeraTypeComponent } from './components/tera-type/tera-type.component';
+import { RaidPokemonComponent } from './components/raid-pokemon/raid-pokemon.component';
+import { SuggestPokemonComponent } from './components/suggest-pokemon/suggest-pokemon.component';
 
 @NgModule({
   declarations: [

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
-import { PokemonType } from '../services/pokemontype';
-import { PokemonTypeService } from '../services/pokemontype.service';
-import { MessageService } from '../services/message.service';
+import { PokemonType } from '../../services/pokemontype';
+import { PokemonTypeService } from '../../services/pokemontype.service';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-tera-type',
