@@ -52,17 +52,21 @@ export class SuggestPokemonComponent {
     const tempSuggestedMoveTypes = new Map<string, number>();
 
     // Get all of the base Pokemon's types as actual PokemonTypes
-    let raidPokemonType: PokemonType;
-    if (raidPokemon.types.length === 1) {
-      raidPokemonType = this.pokemonTypeService.getPokemonType(raidPokemon.types[0]);
-    } else { // Dual type pokemon - initiate shenanigans
-      let firstRaidPokemonType = this.pokemonTypeService.getPokemonType(raidPokemon.types[0]);
+    const raidPokemonTypeReference: PokemonType = this.pokemonTypeService.getPokemonType(raidPokemon.types[0]);
+    let raidPokemonType: PokemonType = {
+      id: raidPokemonTypeReference.id,
+      attackStrengths: new Map(raidPokemonTypeReference.attackStrengths),
+      attackWeaknesses: new Map(raidPokemonTypeReference.attackWeaknesses),
+      defenseStrengths: new Map(raidPokemonTypeReference.defenseStrengths),
+      defenseWeaknesses: new Map(raidPokemonTypeReference.defenseWeaknesses),
+    };
+
+    if (raidPokemon.types.length === 2) {
       let secondRaidPokemonType = this.pokemonTypeService.getPokemonType(raidPokemon.types[1]);
       
       // Calculate a temporary "dual type" that changes all of the types and values based on the dual types; let's
       //    calculate all the new values for attack strengths first; if an attack strength or weakness appears in
       //    other type's attack strengths or weaknesses, multiply the values together. Otherwise just add them.
-      raidPokemonType = firstRaidPokemonType;
       for (let [typeName, multiplier] of secondRaidPokemonType.attackStrengths) {
         // Multiply the values to get the true multiplier for the dual type:
         if (raidPokemonType.attackStrengths.has(typeName)) {
@@ -121,7 +125,7 @@ export class SuggestPokemonComponent {
           // This defense weakness only appears in the second Type, so just add it and its multiplier normally
           raidPokemonType.defenseWeaknesses.set(typeName, multiplier);
         }
-      }
+      }  
     }
 
     // Let's get a list of Pokemon types we don't want because the raid pokemon will
