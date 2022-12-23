@@ -72,10 +72,6 @@ export class SuggestPokemonComponent {
         if (raidPokemonType.attackStrengths.has(typeName)) {
           let firstTypeMultiplier = raidPokemonType.attackStrengths.get(typeName);
           raidPokemonType.attackStrengths.set(typeName, multiplier * firstTypeMultiplier);
-        } else if (raidPokemonType.attackWeaknesses.has(typeName)) {
-          // If it appears in attack weaknesses, they cancel out; an attack weakness is always 0.5 or 0,
-          // and an attack strength is always 2; this means the result is 0 or 1 and we don't track it
-          raidPokemonType.attackStrengths.delete(typeName);
         } else {
           // This attack strength only appears in the second Type, so just add it and its multiplier normally
           raidPokemonType.attackStrengths.set(typeName, multiplier);
@@ -87,10 +83,6 @@ export class SuggestPokemonComponent {
         if (raidPokemonType.attackWeaknesses.has(typeName)) {
           let firstTypeMultiplier = raidPokemonType.attackWeaknesses.get(typeName);
           raidPokemonType.attackWeaknesses.set(typeName, multiplier * firstTypeMultiplier);
-        } else if (raidPokemonType.attackStrengths.has(typeName)) {
-          // If it appears in attack strengths, they cancel out; an attack weakness is always 0.5 or 0,
-          // and an attack strength is always 2; this means the result is 0 or 1 and we don't track it
-          raidPokemonType.attackWeaknesses.delete(typeName);
         } else {
           // This attack weakness only appears in the second Type, so just add it and its multiplier normally
           raidPokemonType.attackWeaknesses.set(typeName, multiplier);
@@ -134,6 +126,10 @@ export class SuggestPokemonComponent {
     let baseAttackStrengthTypes = new Set(raidPokemonType.attackStrengths.keys());
     let disallowedPokemonTypes = new Set([...teraAttackStrengthTypes, ...baseAttackStrengthTypes]);
 
+    disallowedPokemonTypes.forEach((disallowedPokemonType) => {
+      console.log("disallowed type: " + disallowedPokemonType);
+    });
+
     // Let's get a list of Pokemon types we DO want - we want Pokemon types that appear in the attack weaknesses
     //    of the raid pokemon (more resistant to attacks of its Tera type and its base types); if it appears as a weakness
     //    of both the Tera type AND base type, then increase the priority; if it appears as an attack/defense weakness of the base type
@@ -142,7 +138,7 @@ export class SuggestPokemonComponent {
     // Let's do resistances against the raid pokemon first:
     for (let [typeName, multiplier] of raidPokemonType.attackWeaknesses) {
       // If the Tera type does not have it as an attack strength, continue to add it to the list:
-      if (!teraType.attackStrengths.has(typeName)) {
+      if (!disallowedPokemonTypes.has(typeName)) {
         // If the tera type also does less damage against this type, add it to the total multiplier:
         let modifiedSTABMultiplier = (teraType.attackWeaknesses.has(typeName)) ? 1 : 0;
 
