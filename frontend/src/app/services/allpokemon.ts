@@ -1601,4 +1601,12 @@ export const POKEMON: Pokemon[] = [
         id: "Charizard",
         types: ["Fire", "Flying"],
     },
+    {
+        id: "Cinderace",
+        types: ["Fire"],
+    },
+    {
+        id: "Greninja",
+        types: ["Water", "Dark"],
+    },
 ];
